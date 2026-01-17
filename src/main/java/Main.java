@@ -12,9 +12,12 @@ public class Main {
         int overageMinutes = getOverageMinutes();
         scanner.close();
         System.out.println("Phone Bill Statement");
-        System.out.println("Plan: $" + baseCost);
+        System.out.println("Plan: $" + String.format("%.2f", baseCost));
         double overage = calculateOverage(overageMinutes);
-        System.out.println("Overage: $" + overage);
+        System.out.println("Overage: $" + String.format("%.2f", overage));
+        double tax = calculateTax(baseCost, overage);
+        System.out.println("Tax: $" + String.format("%.2f", tax));
+        System.out.println("Total: $" + String.format("%.2f",(baseCost + overage + tax)));
     }
 
     public static double getBaseCost() {
@@ -37,6 +40,10 @@ public class Main {
 
     public static double calculateOverage(int overageMinutes) {
         return overageMinutes * overageFee;
+    }
+
+    public static double calculateTax(double baseCost, double overage) {
+        return (baseCost + overage) * taxRate;
     }
 
 }
