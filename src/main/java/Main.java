@@ -10,9 +10,11 @@ public class Main {
 
         double baseCost = getBaseCost();
         int overageMinutes = getOverageMinutes();
-
         scanner.close();
-
+        System.out.println("Phone Bill Statement");
+        System.out.println("Plan: $" + baseCost);
+        double overage = calculateOverage(overageMinutes);
+        System.out.println("Overage: $" + overage);
     }
 
     public static double getBaseCost() {
@@ -31,6 +33,10 @@ public class Main {
             overageMinutes = scanner.nextInt();
         } while(overageMinutes < 0);
         return overageMinutes;
+    }
+
+    public static double calculateOverage(int overageMinutes) {
+        return overageMinutes * overageFee;
     }
 
 }
